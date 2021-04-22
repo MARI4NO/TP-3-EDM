@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>cliente</title>
+</head>
+<body>
+		<h1>samoelllllllllllllllllllllllll</h1>
+		<br>
+		<h1>Formulario de Carga de Cliente</h1>
+	<form id="formProducto" th:object="${modCliente}" th:action="@{/cliente/guardar}" method="post">
+			<label for="tipodoc">Tipo</label> 
+			<input type="text" id="tipodoc" th:field="*{tipoDeDocumento}">
+		<br>
+			<label for="numdoc">Documento</label> 
+			<input type="number"	id="numdoc" th:field="*{nroDocumento}">
+		<br>
+			<label for="nombreapellido">Nombre y Apellido</label> 
+			<input type="text" id="nombreapellido" th:field="*{nombreApellido}">
+		<br>
+			<label for="email">Email</label> 
+			<input type="email" id="email" th:field="*{email}">
+		<br>
+			<label for="fechanac">Nacimiento</label>			
+			<input type="date"	id="fechanac" th:field="*{fechaNacimiento}">
+		<br>
+			<label for="fucompra">Fecha ultima compra</label> 
+			<input type="date" id="fucompra" th:field="*{fechaUltimaCompra}">
+		<br>
+			<label for="codigo">Cod Area</label> 
+			<input type="number" id="codigo" th:field="*{codigoAreaTelefono}">		
+		<br>
+			<label for="numtel">Telefono</label> 
+			<input type="number" id="numtel" th:field="*{nroTelefono}">		
+		<br>
+		<div>
+			<button type="submit" value="Agregar">Agregar</button>
+		</div>
+	</form>
+	<table>
+		<tr>
+			<th>TIPO DE DOCUMENTO</th>
+			<th>NUMERO DE DOCUMENTO</th>
+			<th>NOMBRE Y APELLIDO</th>
+			<th>EMAIL</th>
+			<th>FECHA DE NACIMIENTO</th>
+			<th>FECHA DE ULTIMA COMPRA</th>
+			<th>TELEFONO</th>
+			<th>EDAD</th>
+			<th>DATOS ADICIONALES</th>
+		</tr>
+		<tr th:each="cl : ${liCliente}">
+			<td th:text ="${cl.tipoDeDocumento}"></td>
+			<td th:text ="${cl.nroDocumento}"></td>
+			<td th:text ="${cl.nombreApellido.toUpperCase()}"></td>
+			<td th:text ="${cl.email}"></td>
+			<td th:text ="${#temporals.format( cl.fechaNacimiento,'dd/MM/yyyy')}"></td>
+			<td th:text ="${#temporals.format( cl.fechaUltimaCompra,'dd/MM/yyyy')}"></td>
+			<td th:text ="|${cl.codigoAreaTelefono} - ${cl.nroTelefono}|"></td>
+			<td th:text ="${cl.edad}"></td>
+		</tr>	
+	
+	</table>
+</body>
+</html>
