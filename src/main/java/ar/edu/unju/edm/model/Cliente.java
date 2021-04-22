@@ -11,7 +11,7 @@ public class Cliente {
 	
 	private String tipoDeDocumento,nombreApellido,email,password;
 	private int nroDocumento,edad,codigoAreaTelefono,nroTelefono;
-	@DateTimeFormat(pattern ="yyyy-mm-dd")
+	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	private LocalDate fechaNacimiento,fechaUltimaCompra;
 	
 	
