@@ -1,6 +1,7 @@
 package ar.edu.unju.edm.model;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -122,19 +123,27 @@ public class Cliente {
 		if(LocalDate.now().getMonthValue() > fechaNacimiento.getMonthValue()){
 			edad = LocalDate.now().getYear() - fechaNacimiento.getYear();
 		}
-		else if(LocalDate.now().getMonthValue() == fechaNacimiento.getMonthValue()){
-			if(fechaNacimiento.getDayOfMonth() >= LocalDate.now().getDayOfMonth()){
-				edad = LocalDate.now().getYear() - fechaNacimiento.getYear();
+		else 
+			if(LocalDate.now().getMonthValue() == fechaNacimiento.getMonthValue()){
+				if(fechaNacimiento.getDayOfMonth() >= LocalDate.now().getDayOfMonth()){
+					edad = LocalDate.now().getYear() - fechaNacimiento.getYear();
+				}
+				else{
+					edad = LocalDate.now().getYear() - fechaNacimiento.getYear() - 1;
+				}
 			}
 			else{
 				edad = LocalDate.now().getYear() - fechaNacimiento.getYear() - 1;
 			}
 		}
-		else{
-			edad = LocalDate.now().getYear() - fechaNacimiento.getYear() - 1;
-		}
-	}
 	
+	public String getTiempoDesdeUltimaCompra() {
+		LocalDate fechaActual = LocalDate.now();
+		Period periodo = Period.between(fechaUltimaCompra, fechaActual);
+		return " T Desde Ultima Compra  Año: " + periodo.getYears() + " Mes: " + periodo.getMonths() + " Dia: " + periodo.getDays() ;		
+		 	
+	}
+
 
 }
 
